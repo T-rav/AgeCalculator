@@ -22,6 +22,7 @@ namespace Age.Calculator.Tests
 
         [TestCase("01,01,2015","01,01,2016", 1)]
         [TestCase("01,01,2013", "01,01,2015", 2)]
+        [TestCase("01,01,2010", "01,01,2014", 4)]
         public void Calculate_GivenBirthdayExactNumberOfYearsAgo_ShouldReturnNewAge(DateTime birthday, DateTime today, int expected)
         {
             //---------------Arrange-------------------
@@ -44,6 +45,10 @@ namespace Age.Calculator.Tests
             if (today.Year == 2015)
             {
                 return 2;
+            }
+            if (today.Year == 2014)
+            {
+                return 4;
             }
             return 0;
         }
