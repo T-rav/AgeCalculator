@@ -49,21 +49,14 @@ namespace Age.Calculator.Tests
 
     public class AgeCalculator
     {
-        public int GetAge(DateTime birthDateTime, DateTime today)
+        public int GetAge(DateTime birthdate, DateTime today)
         {
-            if (today.Month == 3)
+            var age = today.Year - birthdate.Year;
+            if (today.Month < birthdate.Month)
             {
-                return 16;
+                age--;
             }
-            if (today.Month == 4)
-            {
-                return 14;
-            }
-            if (today.Month == 5)
-            {
-                return 11;
-            }
-            return today.Year - birthDateTime.Year;
+            return age;
         }
     }
 }
