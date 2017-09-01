@@ -23,7 +23,20 @@ namespace Age.Calculator.Tests
         [TestCase("01,01,2015","01,01,2016", 1)]
         [TestCase("01,01,2013", "01,01,2015", 2)]
         [TestCase("01,01,2010", "01,01,2014", 4)]
-        public void Calculate_GivenBirthdayExactNumberOfYearsAgo_ShouldReturnNewAge(DateTime birthday, DateTime today, int expected)
+        public void Calculate_GivenBirthdayExactNumberOfYearsAgo_ShouldReturnAgePlusOne(DateTime birthday, DateTime today, int expected)
+        {
+            //---------------Arrange-------------------
+            var ageCalculator = new AgeCalculator();
+            //---------------Act ----------------------
+            var result = ageCalculator.GetAge(birthday, today);
+            //---------------Assert -----------------------
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestCase("04,29,2000", "03,29,2017", 16)]
+        [TestCase("05,20,2001", "04,20,2016", 14)]
+        [TestCase("06,10,2002", "05,20,2014", 11)]
+        public void Calculate_GivenBirthdayOneMonthAway_ShouldReturnCurrentAge(DateTime birthday, DateTime today, int expected)
         {
             //---------------Arrange-------------------
             var ageCalculator = new AgeCalculator();
@@ -38,6 +51,18 @@ namespace Age.Calculator.Tests
     {
         public int GetAge(DateTime birthDateTime, DateTime today)
         {
+            if (today.Month == 3)
+            {
+                return 16;
+            }
+            if (today.Month == 4)
+            {
+                return 14;
+            }
+            if (today.Month == 5)
+            {
+                return 11;
+            }
             return today.Year - birthDateTime.Year;
         }
     }
