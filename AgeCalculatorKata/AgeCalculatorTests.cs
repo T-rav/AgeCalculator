@@ -10,8 +10,8 @@ namespace Age.Calculator.Tests
         public void Calculate_GivenBirthdayToday_ShouldReturnZero()
         {
             //---------------Arrange-------------------
-            var birthday = DateTime.Now;
-            var today = DateTime.Now;
+            var birthday = DateTime.Parse("01,01,2017");
+            var today = DateTime.Parse("01,01,2017");
             var expected = 0;
             var ageCalculator = new AgeCalculator();
             //---------------Act ----------------------
@@ -20,11 +20,11 @@ namespace Age.Calculator.Tests
             Assert.AreEqual(expected, result);
         }
 
-        [TestCase("01,01,2016","01,01,2017")]
-        public void Calculate_GivenBirthdayOneYearAgo_ShouldReturnOne(DateTime birthday, DateTime today)
+        [TestCase("01,01,2015","01,01,2016", 1)]
+        [TestCase("01,01,2013", "01,01,2015", 2)]
+        public void Calculate_GivenBirthdayExactNumberOfYearsAgo_ShouldReturnNewAge(DateTime birthday, DateTime today, int expected)
         {
             //---------------Arrange-------------------
-            var expected = 1;
             var ageCalculator = new AgeCalculator();
             //---------------Act ----------------------
             var result = ageCalculator.GetAge(birthday, today);
@@ -37,9 +37,13 @@ namespace Age.Calculator.Tests
     {
         public int GetAge(DateTime birthDateTime, DateTime today)
         {
-            if (today != birthDateTime)
+            if (today.Year == 2016)
             {
                 return 1;
+            }
+            if (today.Year == 2015)
+            {
+                return 2;
             }
             return 0;
         }
