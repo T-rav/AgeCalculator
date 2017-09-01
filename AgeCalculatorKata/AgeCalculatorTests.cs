@@ -38,19 +38,7 @@ namespace Age.Calculator.Tests
     {
         public int GetAge(DateTime birthDateTime, DateTime today)
         {
-            if (today.Year == 2016)
-            {
-                return 1;
-            }
-            if (today.Year == 2015)
-            {
-                return 2;
-            }
-            if (today.Year == 2014)
-            {
-                return 4;
-            }
-            return 0;
+            return today.Year - birthDateTime.Year;
         }
     }
 }
