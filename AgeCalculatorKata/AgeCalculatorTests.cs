@@ -59,29 +59,4 @@ namespace Age.Calculator.Tests
             Assert.AreEqual(expected, result);
         }
     }
-
-    public class AgeCalculator
-    {
-        public int GetAge(DateTime birthdate, DateTime today)
-        {
-            var age = today.Year - birthdate.Year;
-            if (today.Month < birthdate.Month)
-            {
-                age--;
-            }
-            if (today.Month == 4 && birthdate.Month == 4)
-            {
-                return 16;
-            }
-            if (today.Month == 5 && birthdate.Month == 5)
-            {
-                return 14;
-            }
-            if (today.Month == 6 && birthdate.Month == 6)
-            {
-                return 11;
-            }
-            return age;
-        }
-    }
 }
