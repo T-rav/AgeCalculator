@@ -23,6 +23,7 @@ namespace Age.Calculator.Tests
         [TestCase("01,01,2015","01,01,2016", 1)]
         [TestCase("01,01,2013", "01,01,2015", 2)]
         [TestCase("01,01,2010", "01,01,2014", 4)]
+        [TestCase("02,29,2012", "02,29,2016", 4)]
         public void Calculate_GivenBirthdayExactNumberOfYearsAgo_ShouldReturnAgePlusOne(DateTime birthday, DateTime today, int expected)
         {
             //---------------Arrange-------------------
@@ -49,6 +50,7 @@ namespace Age.Calculator.Tests
         [TestCase("04,29,2000", "04,28,2017", 16)]
         [TestCase("05,20,2001", "05,19,2016", 14)]
         [TestCase("06,10,2002", "06,09,2014", 11)]
+        [TestCase("02,29,2012", "02,28,2014", 1)]
         public void Calculate_GivenBirthdayOneDayAway_ShouldReturnCurrentAge(DateTime birthday, DateTime today, int expected)
         {
             //---------------Arrange-------------------

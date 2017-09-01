@@ -8,12 +8,7 @@ namespace Age.Calculator
         {
             var age = today.Year - birthdate.Year;
 
-            if (IsTodayMonthBeforeBirthday(birthdate, today))
-            {
-                age--;
-            }
-
-            if (IsBirthdayYetToHappenThisMonth(birthdate, today))
+            if (BirthdayMonthIsYetToHappen(birthdate, today) || BirthdayYetToHappenThisMonth(birthdate, today))
             {
                 age--;
             }
@@ -21,12 +16,12 @@ namespace Age.Calculator
             return age;
         }
 
-        private bool IsBirthdayYetToHappenThisMonth(DateTime birthdate, DateTime today)
+        private bool BirthdayYetToHappenThisMonth(DateTime birthdate, DateTime today)
         {
             return today.Month == birthdate.Month && today.Day < birthdate.Day;
         }
 
-        private bool IsTodayMonthBeforeBirthday(DateTime birthdate, DateTime today)
+        private bool BirthdayMonthIsYetToHappen(DateTime birthdate, DateTime today)
         {
             return today.Month < birthdate.Month;
         }
