@@ -22,7 +22,7 @@ namespace Age.Calculator.Tests
 
         [TestCase("01,01,2015","01,01,2016", 1)]
         [TestCase("01,01,2013", "01,01,2015", 2)]
-        [TestCase("01,01,2010", "01,01,2014", 4)]
+        [TestCase("01,01,2010", "01,01,2013", 3)]
         [TestCase("02,29,2012", "02,29,2016", 4)]
         public void Calculate_GivenBirthdayExactNumberOfYearsAgo_ShouldReturnAgePlusOne(DateTime birthday, DateTime today, int expected)
         {
