@@ -6,7 +6,7 @@ namespace Age.Calculator
     {
         public int GetAge(DateTime birthdate, DateTime today)
         {
-            var age = CalculateGrossAge(birthdate, today);
+            var age = CalculateAge(birthdate, today);
             if (BirthdayHasNotHappenedYet(birthdate, today, age))
             {
                 age--;
@@ -22,7 +22,7 @@ namespace Age.Calculator
             return canidateDate.CompareTo(birthdate) != 0;
         }
 
-        private static int CalculateGrossAge(DateTime birthdate, DateTime today)
+        private static int CalculateAge(DateTime birthdate, DateTime today)
         {
             return today.Year - birthdate.Year;
         }
