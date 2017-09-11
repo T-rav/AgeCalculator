@@ -62,6 +62,20 @@ namespace Tests
             Assert.AreEqual(expected, result);
         }
 
+        [Test]
+        public void Calculate_GivenYetToBeBorn_ShouldReturnThrowException()
+        {
+            //---------------Arrange-------------------
+            var birthday = DateTime.Parse("01,02,2017");
+            var today = DateTime.Parse("01,01,2017");
+            var expected = "The given birthday means the person is unborn - cannot calculate age.";
+            var ageCalculator = CreateAgeCalculator();
+            //---------------Act ----------------------
+            var result = Assert.Throws<Exception>(()=>ageCalculator.GetAge(birthday, today));
+            //---------------Assert -----------------------
+            Assert.AreEqual(expected, result.Message);
+        }
+
         private AgeCalculator CreateAgeCalculator()
         {
             var ageCalculator = new AgeCalculator();
