@@ -7,6 +7,10 @@ namespace Age.Calculator
         public int GetAge(DateTime birthdate, DateTime today)
         {
             var age = CalculateAge(birthdate, today);
+            /* 
+             * note: birthday.DayOfYear > today.DayOfYear will not work in all cases 
+             * [TestCase("05,20,2001", "05,19,2016", 14)] FAILS!
+             */
             if (BirthdayHasNotHappenedYet(birthdate, today, age))
             {
                 age--;

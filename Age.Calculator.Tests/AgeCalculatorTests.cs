@@ -1,7 +1,8 @@
 ﻿using System;
+using Age.Calculator;
 using NUnit.Framework;
 
-namespace Age.Calculator.Tests
+namespace Tests
 {
     [TestFixture]
     public class AgeCalculatorTests
@@ -13,7 +14,7 @@ namespace Age.Calculator.Tests
             var birthday = DateTime.Parse("01,01,2017");
             var today = DateTime.Parse("01,01,2017");
             var expected = 0;
-            var ageCalculator = new AgeCalculator();
+            var ageCalculator = CreateAgeCalculator();
             //---------------Act ----------------------
             var result = ageCalculator.GetAge(birthday, today);
             //---------------Assert -----------------------
@@ -27,7 +28,7 @@ namespace Age.Calculator.Tests
         public void Calculate_GivenBirthdayExactNumberOfYearsAgo_ShouldReturnAgePlusOne(DateTime birthday, DateTime today, int expected)
         {
             //---------------Arrange-------------------
-            var ageCalculator = new AgeCalculator();
+            var ageCalculator = CreateAgeCalculator();
             //---------------Act ----------------------
             var result = ageCalculator.GetAge(birthday, today);
             //---------------Assert -----------------------
@@ -40,7 +41,7 @@ namespace Age.Calculator.Tests
         public void Calculate_GivenBirthdayOneMonthAway_ShouldReturnCurrentAge(DateTime birthday, DateTime today, int expected)
         {
             //---------------Arrange-------------------
-            var ageCalculator = new AgeCalculator();
+            var ageCalculator = CreateAgeCalculator();
             //---------------Act ----------------------
             var result = ageCalculator.GetAge(birthday, today);
             //---------------Assert -----------------------
@@ -54,11 +55,17 @@ namespace Age.Calculator.Tests
         public void Calculate_GivenBirthdayOneDayAway_ShouldReturnCurrentAge(DateTime birthday, DateTime today, int expected)
         {
             //---------------Arrange-------------------
-            var ageCalculator = new AgeCalculator();
+            var ageCalculator = CreateAgeCalculator();
             //---------------Act ----------------------
             var result = ageCalculator.GetAge(birthday, today);
             //---------------Assert -----------------------
             Assert.AreEqual(expected, result);
+        }
+
+        private AgeCalculator CreateAgeCalculator()
+        {
+            var ageCalculator = new AgeCalculator();
+            return ageCalculator;
         }
     }
 }
