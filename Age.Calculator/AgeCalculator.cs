@@ -13,9 +13,14 @@ namespace Age.Calculator
             var age = CalculateAge(birthdate, today);
             age = AdjustAge(birthdate, today, age);
 
-            ThrowExceptionIfAgeLessThanZero(age);
+            ThrowExceptionIfUnborn(age);
 
             return age;
+        }
+
+        private int CalculateAge(DateTime birthdate, DateTime today)
+        {
+            return today.Year - birthdate.Year;
         }
 
         private int AdjustAge(DateTime birthdate, DateTime today, int age)
@@ -28,17 +33,12 @@ namespace Age.Calculator
             return age;
         }
 
-        private void ThrowExceptionIfAgeLessThanZero(int age)
+        private void ThrowExceptionIfUnborn(int age)
         {
             if (IsUnborn(age))
             {
                 throw new Exception("The given birthday means the person is unborn - cannot calculate age.");
             }
-        }
-
-        private bool IsUnborn(int age)
-        {
-            return age < 0;
         }
 
         private bool BirthdayYetToHappen(DateTime birthdate, DateTime today)
@@ -48,9 +48,9 @@ namespace Age.Calculator
             return canidateDate.CompareTo(birthdate) < 0;
         }
 
-        private int CalculateAge(DateTime birthdate, DateTime today)
+        private bool IsUnborn(int age)
         {
-            return today.Year - birthdate.Year;
+            return age < 0;
         }
     }
 }

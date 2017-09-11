@@ -63,7 +63,7 @@ namespace Tests
         }
 
         [Test]
-        public void Calculate_GivenYetToBeBorn_ShouldReturnThrowException()
+        public void Calculate_GivenBirthdayOfUnborn_ShouldReturnThrowException()
         {
             //---------------Arrange-------------------
             var birthday = DateTime.Parse("01,02,2017");
