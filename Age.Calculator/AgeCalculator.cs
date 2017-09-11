@@ -25,7 +25,7 @@ namespace Age.Calculator
 
         private int AdjustAge(DateTime birthdate, DateTime today, int age)
         {
-            if (BirthdayYetToHappen(birthdate, today))
+            if (BirthdayYetToHappenThisYear(birthdate, today))
             {
                 return --age;
             }
@@ -41,7 +41,7 @@ namespace Age.Calculator
             }
         }
 
-        private bool BirthdayYetToHappen(DateTime birthdate, DateTime today)
+        private bool BirthdayYetToHappenThisYear(DateTime birthdate, DateTime today)
         {
             var negativeAge = -1 * CalculateAge(birthdate, today);
             var canidateDate = today.AddYears(negativeAge);
