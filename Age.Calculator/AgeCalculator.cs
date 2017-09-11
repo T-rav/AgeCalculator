@@ -11,29 +11,41 @@ namespace Age.Calculator
         public int GetAge(DateTime birthdate, DateTime today)
         {
             var age = CalculateAge(birthdate, today);
-            if (BirthdayHasNotHappenedYet(birthdate, today, age))
-            {
-                age--;
-            }
+            age = AdjustAge(birthdate, today, age);
 
             ThrowExceptionIfAgeLessThanZero(age);
 
             return age;
         }
 
+        private int AdjustAge(DateTime birthdate, DateTime today, int age)
+        {
+            if (BirthdayYetToHappen(birthdate, today))
+            {
+                return --age;
+            }
+
+            return age;
+        }
+
         private void ThrowExceptionIfAgeLessThanZero(int age)
         {
-            if (age < 0)
+            if (IsUnborn(age))
             {
                 throw new Exception("The given birthday means the person is unborn - cannot calculate age.");
             }
         }
 
-        private bool BirthdayHasNotHappenedYet(DateTime birthdate, DateTime today, int age)
+        private bool IsUnborn(int age)
         {
-            var negativeAge = -1 * age;
+            return age < 0;
+        }
+
+        private bool BirthdayYetToHappen(DateTime birthdate, DateTime today)
+        {
+            var negativeAge = -1 * CalculateAge(birthdate, today);
             var canidateDate = today.AddYears(negativeAge);
-            return canidateDate.CompareTo(birthdate) != 0;
+            return canidateDate.CompareTo(birthdate) < 0;
         }
 
         private int CalculateAge(DateTime birthdate, DateTime today)
