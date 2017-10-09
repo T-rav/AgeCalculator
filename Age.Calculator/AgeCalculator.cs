@@ -4,10 +4,8 @@ namespace Age.Calculator
 {
     public class AgeCalculator
     {
-        /* 
-         * note: birthday.DayOfYear > today.DayOfYear will not work in all cases 
-         * [TestCase("05,20,2001", "05,19,2016", 14)] FAILS!
-         */
+        private const int CanidateDateYear = 2004;
+
         public int GetAge(DateTime birthdate, DateTime today)
         {
             var age = CalculateAge(birthdate, today);
@@ -43,9 +41,9 @@ namespace Age.Calculator
 
         private bool BirthdayYetToHappenThisYear(DateTime birthdate, DateTime today)
         {
-            var negativeAge = -1 * CalculateAge(birthdate, today);
-            var canidateDate = today.AddYears(negativeAge);
-            return canidateDate.CompareTo(birthdate) < 0;
+            var canidateBirthday = new DateTime(CanidateDateYear, birthdate.Month, birthdate.Day);
+            var canidateTargetDate = new DateTime(CanidateDateYear, today.Month, today.Day);
+            return canidateTargetDate.CompareTo(canidateBirthday) < 0;
         }
 
         private bool IsUnborn(int age)

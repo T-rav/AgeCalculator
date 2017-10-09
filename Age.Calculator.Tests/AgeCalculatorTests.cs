@@ -8,15 +8,15 @@ namespace Tests
     public class AgeCalculatorTests
     {
         [Test]
-        public void Calculate_GivenBirthdayToday_ShouldReturnZero()
+        public void Calculate_GivenBirthdaytargetDate_ShouldReturnZero()
         {
             //---------------Arrange-------------------
             var birthday = DateTime.Parse("01,01,2017");
-            var today = DateTime.Parse("01,01,2017");
+            var targetDate = DateTime.Parse("01,01,2017");
             var expected = 0;
             var ageCalculator = CreateAgeCalculator();
             //---------------Act ----------------------
-            var result = ageCalculator.GetAge(birthday, today);
+            var result = ageCalculator.GetAge(birthday, targetDate);
             //---------------Assert -----------------------
             Assert.AreEqual(expected, result);
         }
@@ -25,12 +25,13 @@ namespace Tests
         [TestCase("01,01,2013", "01,01,2015", 2)]
         [TestCase("01,01,2010", "01,01,2013", 3)]
         [TestCase("02,29,2012", "02,29,2016", 4)]
-        public void Calculate_GivenBirthdayExactNumberOfYearsAgo_ShouldReturnAgePlusOne(DateTime birthday, DateTime today, int expected)
+        [TestCase("02,29,2012", "03,01,2014", 2)]
+        public void Calculate_GivenBirthdayExactNumberOfYearsAgo_ShouldReturnAgePlusOne(DateTime birthday, DateTime targetDate, int expected)
         {
             //---------------Arrange-------------------
             var ageCalculator = CreateAgeCalculator();
             //---------------Act ----------------------
-            var result = ageCalculator.GetAge(birthday, today);
+            var result = ageCalculator.GetAge(birthday, targetDate);
             //---------------Assert -----------------------
             Assert.AreEqual(expected, result);
         }
@@ -38,12 +39,12 @@ namespace Tests
         [TestCase("04,29,2000", "03,29,2017", 16)]
         [TestCase("05,20,2001", "04,20,2016", 14)]
         [TestCase("06,10,2002", "05,20,2014", 11)]
-        public void Calculate_GivenBirthdayOneMonthAway_ShouldReturnCurrentAge(DateTime birthday, DateTime today, int expected)
+        public void Calculate_GivenBirthdayOneMonthAway_ShouldReturnCurrentAge(DateTime birthday, DateTime targetDate, int expected)
         {
             //---------------Arrange-------------------
             var ageCalculator = CreateAgeCalculator();
             //---------------Act ----------------------
-            var result = ageCalculator.GetAge(birthday, today);
+            var result = ageCalculator.GetAge(birthday, targetDate);
             //---------------Assert -----------------------
             Assert.AreEqual(expected, result);
         }
@@ -52,12 +53,12 @@ namespace Tests
         [TestCase("05,20,2001", "05,19,2016", 14)]
         [TestCase("06,10,2002", "06,09,2014", 11)]
         [TestCase("02,29,2012", "02,28,2014", 1)]
-        public void Calculate_GivenBirthdayOneDayAway_ShouldReturnCurrentAge(DateTime birthday, DateTime today, int expected)
+        public void Calculate_GivenBirthdayOneDayAway_ShouldReturnCurrentAge(DateTime birthday, DateTime targetDate, int expected)
         {
             //---------------Arrange-------------------
             var ageCalculator = CreateAgeCalculator();
             //---------------Act ----------------------
-            var result = ageCalculator.GetAge(birthday, today);
+            var result = ageCalculator.GetAge(birthday, targetDate);
             //---------------Assert -----------------------
             Assert.AreEqual(expected, result);
         }
@@ -67,13 +68,27 @@ namespace Tests
         {
             //---------------Arrange-------------------
             var birthday = DateTime.Parse("01,02,2017");
-            var today = DateTime.Parse("01,01,2017");
+            var targetDate = DateTime.Parse("01,01,2017");
             var expected = "The given birthday means the person is unborn - cannot calculate age.";
             var ageCalculator = CreateAgeCalculator();
             //---------------Act ----------------------
-            var result = Assert.Throws<Exception>(()=>ageCalculator.GetAge(birthday, today));
+            var result = Assert.Throws<Exception>(()=>ageCalculator.GetAge(birthday, targetDate));
             //---------------Assert -----------------------
             Assert.AreEqual(expected, result.Message);
+        }
+
+        [Test]
+        public void Calculate_GivenBirthday29FebuaryAndMarch1TwoYearsLater_ShouldReturnAge2()
+        {
+            //---------------Arrange-------------------
+            var birthday = new DateTime(2012, 02, 28); 
+            var targetDate = new DateTime(2014, 03, 01);
+            var expected = 2;
+            var ageCalculator = CreateAgeCalculator();
+            //---------------Act ----------------------
+            var result = ageCalculator.GetAge(birthday, targetDate);
+            //---------------Assert -----------------------
+            Assert.AreEqual(expected, result);
         }
 
         private AgeCalculator CreateAgeCalculator()
