@@ -9,7 +9,6 @@ namespace Age.Calculator
         public int GetAge(DateTime birthdate, DateTime today)
         {
             var age = CalculateAge(birthdate, today);
-            age = AdjustAge(birthdate, today, age);
 
             ThrowExceptionIfUnborn(age);
 
@@ -18,12 +17,13 @@ namespace Age.Calculator
 
         private int CalculateAge(DateTime birthdate, DateTime today)
         {
-            return today.Year - birthdate.Year;
+            var age = today.Year - birthdate.Year;
+            return AdjustAgeIfBirthdayYetToHappen(birthdate, today, age);
         }
 
-        private int AdjustAge(DateTime birthdate, DateTime today, int age)
+        private int AdjustAgeIfBirthdayYetToHappen(DateTime birthdate, DateTime today, int age)
         {
-            if (BirthdayYetToHappenThisYear(birthdate, today))
+            if (BirthdayYetToHappen(birthdate, today))
             {
                 return --age;
             }
@@ -39,7 +39,7 @@ namespace Age.Calculator
             }
         }
 
-        private bool BirthdayYetToHappenThisYear(DateTime birthdate, DateTime today)
+        private bool BirthdayYetToHappen(DateTime birthdate, DateTime today)
         {
             var canidateBirthday = new DateTime(CanidateDateYear, birthdate.Month, birthdate.Day);
             var canidateTargetDate = new DateTime(CanidateDateYear, today.Month, today.Day);
