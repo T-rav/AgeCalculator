@@ -8,7 +8,7 @@ namespace Tests
     public class AgeCalculatorTests
     {
         [Test]
-        public void Calculate_GivenBirthdaytargetDate_ShouldReturnZero()
+        public void Calculate_GivenBirthdayTargetDate_ShouldReturnZero()
         {
             //---------------Arrange-------------------
             var birthday = DateTime.Parse("01,01,2017");
