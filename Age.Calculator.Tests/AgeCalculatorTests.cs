@@ -77,20 +77,6 @@ namespace Tests
             Assert.AreEqual(expected, result.Message);
         }
 
-        [Test]
-        public void Calculate_GivenBirthday29FebuaryAndMarch1TwoYearsLater_ShouldReturnAge2()
-        {
-            //---------------Arrange-------------------
-            var birthday = new DateTime(2012, 02, 28); 
-            var targetDate = new DateTime(2014, 03, 01);
-            var expected = 2;
-            var ageCalculator = CreateAgeCalculator();
-            //---------------Act ----------------------
-            var result = ageCalculator.GetAge(birthday, targetDate);
-            //---------------Assert -----------------------
-            Assert.AreEqual(expected, result);
-        }
-
         private AgeCalculator CreateAgeCalculator()
         {
             var ageCalculator = new AgeCalculator();
