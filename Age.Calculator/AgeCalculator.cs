@@ -15,7 +15,6 @@ namespace Age.Calculator
 
         private int CalculateAge(DateTime birthday, DateTime targetDate)
         {
-            
             var todayInteger = ConvertDateToInteger(targetDate);
             var birthdayInteger = ConvertDateToInteger(birthday);
 
@@ -32,7 +31,7 @@ namespace Age.Calculator
         private static int ConvertDateToInteger(DateTime targetDate)
         {
             var dateString = targetDate.ToString("yyyyMMdd");
-            var dateInteger = Int32.Parse(dateString);
+            var dateInteger = int.Parse(dateString);
             return dateInteger;
         }
 
