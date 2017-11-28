@@ -67,8 +67,8 @@ namespace Tests
         public void Calculate_GivenUnborn_ShouldThrowException()
         {
             //---------------Arrange-------------------
-            var birthday = new DateTime(2017,01,02);
-            var targetDate = new DateTime(2017,01,01);
+            var birthday = new DateTime(2017,01,01);
+            var targetDate = new DateTime(2017,01,02);
             var expected = "The given birthday means the person is unborn - cannot calculate age.";
             var ageCalculator = CreateAgeCalculator();
             //---------------Act ----------------------
