@@ -64,7 +64,7 @@ namespace Tests
         }
 
         [Test]
-        public void Calculate_GivenBirthdayOfUnborn_ShouldReturnThrowException()
+        public void Calculate_GivenUnborn_ShouldThrowException()
         {
             //---------------Arrange-------------------
             var birthday = new DateTime(2017,01,02);
