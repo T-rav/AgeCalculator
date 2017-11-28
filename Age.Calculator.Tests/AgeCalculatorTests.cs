@@ -8,7 +8,7 @@ namespace Tests
     public class AgeCalculatorTests
     {
         [Test]
-        public void Calculate_GivenBirthdayTargetDate_ShouldReturnZero()
+        public void Calculate_GivenBornToday_ShouldReturnZero()
         {
             //---------------Arrange-------------------
             var birthday = new DateTime(2017,01,01);
