@@ -24,7 +24,7 @@ namespace Age.Calculator
         private static int DetermineAgeFromDateIntegers(int todayInteger, int birthdayInteger)
         {
             var yearAdjustmentFactor = 10000.00;
-
+            // E.g. (20171128 - 19810429) / 10000.00 => 36.069
             return (int)Math.Floor((todayInteger - birthdayInteger) / yearAdjustmentFactor);
         }
 
