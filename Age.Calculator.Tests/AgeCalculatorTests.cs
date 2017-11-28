@@ -26,7 +26,7 @@ namespace Tests
         [TestCase("01,01,2010", "01,01,2013", 3)]
         [TestCase("02,29,2012", "02,29,2016", 4)]
         [TestCase("02,29,2012", "03,01,2014", 2)]
-        public void Calculate_GivenBirthdayCelebratedToday_ShouldReturnAgePlusOne(DateTime birthday, DateTime targetDate, int expected)
+        public void Calculate_GivenBirthdayCelebratedToday_ShouldReturnCurrentAgePlusOne(DateTime birthday, DateTime targetDate, int expected)
         {
             //---------------Arrange-------------------
             var ageCalculator = CreateAgeCalculator();
