@@ -11,8 +11,8 @@ namespace Tests
         public void Calculate_GivenBirthdayTargetDate_ShouldReturnZero()
         {
             //---------------Arrange-------------------
-            var birthday = DateTime.Parse("01,01,2017");
-            var targetDate = DateTime.Parse("01,01,2017");
+            var birthday = new DateTime(2017,01,01);
+            var targetDate = new DateTime(2017,01,01);
             var expected = 0;
             var ageCalculator = CreateAgeCalculator();
             //---------------Act ----------------------
@@ -67,8 +67,8 @@ namespace Tests
         public void Calculate_GivenBirthdayOfUnborn_ShouldReturnThrowException()
         {
             //---------------Arrange-------------------
-            var birthday = DateTime.Parse("01,02,2017");
-            var targetDate = DateTime.Parse("01,01,2017");
+            var birthday = new DateTime(2017,01,02);
+            var targetDate = new DateTime(2017,01,01);
             var expected = "The given birthday means the person is unborn - cannot calculate age.";
             var ageCalculator = CreateAgeCalculator();
             //---------------Act ----------------------
