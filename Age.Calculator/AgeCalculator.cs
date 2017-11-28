@@ -15,10 +15,10 @@ namespace Age.Calculator
 
         private int CalculateAge(DateTime birthday, DateTime targetDate)
         {
-            var todayInteger = ConvertDateToInteger(targetDate);
+            var targetDateInteger = ConvertDateToInteger(targetDate);
             var birthdayInteger = ConvertDateToInteger(birthday);
 
-            return DetermineAgeFromDateIntegers(todayInteger, birthdayInteger);
+            return DetermineAgeFromDateIntegers(targetDateInteger, birthdayInteger);
         }
 
         private static int DetermineAgeFromDateIntegers(int todayInteger, int birthdayInteger)
