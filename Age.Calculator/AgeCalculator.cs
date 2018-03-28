@@ -1,38 +1,34 @@
-﻿using System;
+using System;
 
 namespace Age.Calculator
 {
     public class AgeCalculator
     {
-        public int GetAge(DateTime birthday, DateTime targetDate)
+        private const int CanidateDateYear = 2004;
+
+        public int GetAge(DateTime birthdate, DateTime today)
         {
-            var age = CalculateAge(birthday, targetDate);
+            var age = CalculateAge(birthdate, today);
 
             ThrowExceptionIfUnborn(age);
 
             return age;
         }
 
-        private int CalculateAge(DateTime birthday, DateTime targetDate)
+        private int CalculateAge(DateTime birthdate, DateTime today)
         {
-            var targetDateInteger = ConvertDateToInteger(targetDate);
-            var birthdayInteger = ConvertDateToInteger(birthday);
-
-            return DetermineAgeFromDateIntegers(targetDateInteger, birthdayInteger);
+            var age = today.Year - birthdate.Year;
+            return AdjustAgeIfBirthdayYetToHappen(birthdate, today, age);
         }
 
-        private static int DetermineAgeFromDateIntegers(int todayInteger, int birthdayInteger)
+        private int AdjustAgeIfBirthdayYetToHappen(DateTime birthdate, DateTime today, int age)
         {
-            var yearAdjustmentFactor = 10000.00;
-            // E.g. (20171128 - 19810429) / 10000.00 => 36.069
-            return (int)Math.Floor((todayInteger - birthdayInteger) / yearAdjustmentFactor);
-        }
+            if (BirthdayYetToHappen(birthdate, today))
+            {
+                return --age;
+            }
 
-        private static int ConvertDateToInteger(DateTime targetDate)
-        {
-            var dateString = targetDate.ToString("yyyyMMdd");
-            var dateInteger = int.Parse(dateString);
-            return dateInteger;
+            return age;
         }
 
         private void ThrowExceptionIfUnborn(int age)
@@ -41,6 +37,13 @@ namespace Age.Calculator
             {
                 throw new Exception("The given birthday means the person is unborn - cannot calculate age.");
             }
+        }
+
+        private bool BirthdayYetToHappen(DateTime birthdate, DateTime today)
+        {
+            var canidateBirthday = new DateTime(CanidateDateYear, birthdate.Month, birthdate.Day);
+            var canidateTargetDate = new DateTime(CanidateDateYear, today.Month, today.Day);
+            return canidateTargetDate.CompareTo(canidateBirthday) < 0;
         }
 
         private bool IsUnborn(int age)
