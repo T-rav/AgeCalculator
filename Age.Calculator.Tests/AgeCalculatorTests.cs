@@ -16,7 +16,7 @@ namespace Tests
             var expected = 0;
             var ageCalculator = CreateAgeCalculator();
             //---------------Act ----------------------
-            var result = ageCalculator.GetAge(birthday, targetDate);
+            var result = ageCalculator.Calculate(birthday, targetDate);
             //---------------Assert -----------------------
             Assert.AreEqual(expected, result);
         }
@@ -31,7 +31,7 @@ namespace Tests
             //---------------Arrange-------------------
             var ageCalculator = CreateAgeCalculator();
             //---------------Act ----------------------
-            var result = ageCalculator.GetAge(birthday, targetDate);
+            var result = ageCalculator.Calculate(birthday, targetDate);
             //---------------Assert -----------------------
             Assert.AreEqual(expected, result);
         }
@@ -44,7 +44,7 @@ namespace Tests
             //---------------Arrange-------------------
             var ageCalculator = CreateAgeCalculator();
             //---------------Act ----------------------
-            var result = ageCalculator.GetAge(birthday, targetDate);
+            var result = ageCalculator.Calculate(birthday, targetDate);
             //---------------Assert -----------------------
             Assert.AreEqual(expected, result);
         }
@@ -58,7 +58,7 @@ namespace Tests
             //---------------Arrange-------------------
             var ageCalculator = CreateAgeCalculator();
             //---------------Act ----------------------
-            var result = ageCalculator.GetAge(birthday, targetDate);
+            var result = ageCalculator.Calculate(birthday, targetDate);
             //---------------Assert -----------------------
             Assert.AreEqual(expected, result);
         }
@@ -72,7 +72,7 @@ namespace Tests
             var expected = "The given birthday means the person is unborn - cannot calculate age.";
             var ageCalculator = CreateAgeCalculator();
             //---------------Act ----------------------
-            var result = Assert.Throws<Exception>(()=>ageCalculator.GetAge(birthday, targetDate));
+            var result = Assert.Throws<Exception>(()=>ageCalculator.Calculate(birthday, targetDate));
             //---------------Assert -----------------------
             Assert.AreEqual(expected, result.Message);
         }
