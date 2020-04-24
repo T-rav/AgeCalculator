@@ -16,16 +16,16 @@ namespace Age.Calculator
         private int Calculate_Age(DateTime birthdate, DateTime today)
         {
             var age = today.Year - birthdate.Year;
-            if (Birthday_Yet_To_Happen_This_Year(birthdate, today))
+            if (Birthday_Yet_To_Happen_This_Year(birthdate, today, age))
             {
                 return --age;
             }
             return age;
         }
 
-        private bool Birthday_Yet_To_Happen_This_Year(DateTime birthdate, DateTime today)
+        private bool Birthday_Yet_To_Happen_This_Year(DateTime birthdate, DateTime today, int age)
         {
-            var negativeAge = -1 * Calculate_Age(birthdate, today);
+            var negativeAge = -1 * age;
             var canidateDate = today.AddYears(negativeAge);
             return canidateDate.CompareTo(birthdate) < 0;
         }
